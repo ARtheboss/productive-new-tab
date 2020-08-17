@@ -1,0 +1,54 @@
+<html>
+  	<head>
+  		<script src="jquery.js"></script>
+  		<script src="textarea.js"></script>
+  		<link rel="stylesheet" type="text/css" href="style.css">
+  		<link rel="stylesheet" href="assets/fa/css/font-awesome.min.css">
+	</head>
+	<body>
+
+		<div class='top bar'>
+			<p id='welcome'></p>
+			<span class='fa fa-cog' id='settings'></span>
+		</div>
+		<div class='mid bar'>
+			<h1 id='time'>1:23 PM</h1>
+		</div>
+		<div class='nav bar'>
+			<span class='nav-item'>
+				<img src='assets/todo.png'>
+			</span>
+			<span class='nav-item'>
+				<img src='assets/todo.png'>
+			</span>
+			<span class='nav-item active'>
+				<img src='assets/todo.png'>
+			</span>
+			<span class='nav-item'>
+				<img src='assets/todo.png'>
+			</span>
+			<span class='nav-item'>
+				<img src='assets/todo.png'>
+			</span>
+		</div>
+
+		<div id='todo' class='menu'>
+			<div id='todo-cont'>
+				<div class='todo-head'>
+					<select id='todo-select'></select>
+					<span id='date-all-toggle'>All</span>
+				</div>
+				<div class='heading'>
+					<span id='left-arrow' class='fa fa-chevron-left'></span>
+					<span id='active-date'></span>
+					<span id='right-arrow' class='fa fa-chevron-right'></span>
+				</div>
+				<table class='body' id='todo-list'>
+				</table>
+			</div>
+		</div>
+
+		<script src="newtab.js"></script>
+
+	</body>
+</html>
