@@ -1,12 +1,39 @@
 <html>
   	<head>
   		<script src="jquery.js"></script>
-  		<link rel="stylesheet" type="text/css" href="style.css">
+  		<link rel="stylesheet" type="text/css" href="options.css">
   		<link rel="stylesheet" href="assets/fa/css/font-awesome.min.css">
+  		<title>New Tab Options</title>
 	</head>
 	<body>
-
-		
+		<div class='header'>
+			<h1>Productive New Tab</h1>
+		</div>
+		<div class='body'>
+			<div class='sidebar'>
+				<div class='welcome'>Welcome, Advay</div>
+				<div class='sidemenu'>Todo</div>
+			</div>
+			<div class='content'>
+				<div class='menu Todo'>
+					<table id='todo-table'>
+						<tr>
+							<th>Name</th>
+							<th>Type</th>
+							<th># Events</th>
+							<th>Delete</th>
+						</tr>
+					</table>
+					<button id='add-todo'>Add Todo</button>
+					<input id='todo-name' placeholder='Name of Todo'>
+					<select id='todo-type'>
+						<option disabled>Todo type</option>
+						<option value='0'>Day-to-day</option>
+						<option value='1'>Long-term</option>
+					</select>
+				</div>
+			</div>
+		</div>
 
 		<script src='options.js'></script>
 	</body>

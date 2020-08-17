@@ -1,0 +1,215 @@
+html, body{
+	margin: 0;
+}
+.bar{
+	width: 100%;
+}
+
+.top{
+	height: 5vh;
+	background: rgb(200, 200, 200);
+}
+#settings{
+	color: white;
+	font-size: 3vh;
+	position: absolute;
+	top: 1vh;
+	right: 1vh;
+}
+#settings:hover{
+	color: rgb(240, 240, 240);
+}
+.mid{
+	height: 11vh;
+	background: rgb(150, 150, 150);
+}
+.nav{
+	height: 13vh;
+	background: rgb(200, 200, 200);
+	text-align: center;
+}
+.nav-item{
+	display: inline-block;
+	background: rgb(200, 200, 200);
+	height: 100%;
+	width: 20vh;
+	margin: 0;
+}
+.nav-item > img{
+	margin: 10%;
+	height: 70%;
+}
+.nav-item:hover{
+	background: rgb(190, 190, 190);
+}
+.active.nav-item{
+	background: rgb(150, 150, 150);
+	position: relative;
+}
+.active.nav-item::after{
+	content: '';
+	width: 0; 
+	height: 0; 
+
+	position: absolute;
+	top: 13vh;
+	right: 0;
+
+	border-left: 10vh solid transparent;
+	border-right: 10vh solid transparent;
+
+	border-top: 2.9vh solid rgb(150, 150, 150);
+}
+.active.nav-item:hover{
+	background: rgb(150, 150, 150);
+}
+
+p{
+	color: white;
+}
+#welcome{
+	margin-left: 3vw;
+	line-height: 5vh;
+	font-size: 2vh;
+}
+
+h1{
+	margin: 0;
+	text-align: center;
+	font-size: 5vh;
+	font-family: "Arial Black";
+	color: white;
+	line-height: 10vh;
+}
+#todo-cont{
+	width: 32.4vw;
+	background: rgb(200, 200, 200);
+	margin: auto;
+	margin-top: 6vh;
+}
+.todo-head{
+	width: 100%;
+	height: 4.5vh;
+	background: rgb(150, 150, 150);
+	color: white;
+}
+#todo-select{
+	width: 80%;
+	height: 100%;
+	background: rgb(150, 150, 150);
+	color: white;
+	text-indent: 1vw;
+	font-size: 1.7vh;
+	border: none;
+}
+#date-all-toggle{
+	width: 20%;
+	height: 100%;
+	float: right;
+	cursor: pointer;
+	text-align: center;
+	display: inline-block;
+	line-height: 4.5vh;
+}
+#date-all-toggle:hover{
+	background: rgb(190, 190, 190);
+}
+.heading{
+	width: 100%;
+	height: 5.5vh;
+	background: rgb(150, 150, 150);
+	line-height: 5.5vh;
+	text-align: center;
+	color:white;
+	font-size: 2vh;
+}
+table{
+	width: 100%;
+	padding: 1vw;
+}
+td{
+	padding: 1vh 0;
+	position: relative;
+}
+.check-cont{
+	display: block;
+	position: relative;
+	padding-left: 2.5vh;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	bottom: 2vh;
+}
+td input[type=checkbox]{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkmark {
+  position: absolute;
+  top: .5vh;
+  left: 0;
+  height: 2.5vh;
+  width: 2.5vh;
+  background-color: rgb(200, 200, 200);
+  border: .2vh rgb(150,150,150) solid;
+  border-radius: .5vh;
+}
+td input[type=checkbox]:checked ~ .checkmark {
+  background-color: rgb(150,150,150);
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+td input[type=checkbox]:checked ~ .checkmark:after {
+  display: block;
+}
+.checkmark:after {
+  width: .5vh;
+  height: 1vh;
+  top: .5vh;
+  left: .75vh;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+td textarea, #hidden-div{
+	width: 100%;
+	height: 3.5vh;
+	outline: none;
+	border-width: 0 0 .2vh 0;
+	border-style: solid;
+	border-color: rgb(150, 150, 150);
+	background: transparent;
+	padding: 0 1vw;
+	color: rgb(150,150,150);
+	resize: none;
+	line-height: 3.5vh;
+	overflow: hidden;
+}
+td textarea:focus{
+	background: rgb(150, 150, 150);
+	color: white;
+}
+
+#left-arrow{
+	float:left;
+	margin-top: 1.8vh;
+	margin-left: 1vh;
+	cursor: pointer;
+}
+#right-arrow{
+	float: right;
+	margin-top: 1.8vh;
+	margin-right: 1vh;
+	cursor: pointer;
+}

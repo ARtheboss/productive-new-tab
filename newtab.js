@@ -22,13 +22,13 @@ $(document).ready(function () {
 	}
 	if(todos != null){
 		for(var i = 0; i < todos.length; i++){
-			$("#todo-select").append("<option value='"+i+"'>"+todos[i].name+"<option>");
+			$("#todo-select").append("<option value='"+i+"'>"+todos[i].name+"</option>");
 		}
 	}else{
 		todos = [{'name':'Default', 'type': 0, 'list': []}];
 		localStorage.setItem('todo', JSON.stringify(todos));
 		for(var i = 0; i < todos.length; i++){
-			$("#todo-select").append("<option value='"+i+"'>"+todos[i].name+"<option>");
+			$("#todo-select").append("<option value='"+i+"'>"+todos[i].name+"</option>");
 		}
 	}
 	populateTodo(0);
@@ -45,6 +45,7 @@ function getDateString(d){
 
 function populateTodo(n){
 	var mylist = todos[n].list;
+	$("#todo-list").html("");
 	if(mylist.length != 0){
 		$("#todo-list").html();
 		for(var i = 0; i < mylist.length; i++){
@@ -111,6 +112,10 @@ $("#todo-list").on('change', 'input[type="checkbox"]', function() {
 	var id = $(this).parent().parent().parent().attr('id');
 	todos[$("#todo-select").val()].list[id].done = $(this).is(":checked");
 	localStorage.setItem('todo', JSON.stringify(todos));
+});
+
+$("#todo-select").on('change', function(){
+	populateTodo($("#todo-select").val());
 });
 
 $("#left-arrow").click(function() {

@@ -1,0 +1,62 @@
+
+
+html, body{
+	margin: 0;
+}
+h1{
+	color: white;
+	padding-left: 2vw;
+	line-height: 7vh;
+}
+.header{
+	width: 100%;
+	height: 7vh;
+	background: rgb(150, 150, 150);
+}
+.body{
+	display: flex;
+	width: 100%;
+	height: 93vh;
+}
+.sidebar{
+	flex: 20%;
+	height: 100%;
+	background: rgb(200, 200, 200);
+}
+.content{
+	flex: 80%;
+	height: 100%;
+	padding: 1vw;
+}
+.welcome{
+	text-align: center;
+	color: white;
+	font-size: 3vh;
+	padding: 3vh;
+}
+.sidemenu{
+	width: 100%;
+	color: white;
+	text-align: center;
+	padding: 1vh 0;
+	font-size: 2vh;
+	cursor: pointer;
+}
+.sidemenu:hover{
+	background: rgb(240, 240, 240);
+}
+.menu{
+	display: none;
+}
+table{
+	margin: 10%;
+	width: 80%;
+	background: rgb(200, 200, 200);
+}
+td, th{
+	border: solid 1px white;
+	padding: 1vw;
+}
+.delete-todo{
+	cursor: pointer;
+}
