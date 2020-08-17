@@ -43,6 +43,11 @@ function getDateString(d){
 
 function populateTodo(n){
 	var mylist = todos[n].list;
+	if(todos[n].type){
+		$(".heading").hide();
+	}else{
+		$(".heading").show();
+	}
 	$("#todo-list").html("");
 	if(mylist.length != 0){
 		$("#todo-list").html();
@@ -58,7 +63,7 @@ function populateTodo(n){
 		}
 	}
 	addBlankRow();
-	setHeadingDate(active_day);
+	if(!todos[n].type) setHeadingDate(active_day);
 }
 
 function setHeadingDate(d){
