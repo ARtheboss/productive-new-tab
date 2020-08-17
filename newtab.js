@@ -13,8 +13,6 @@ $(document).ready(function () {
 		$('time').html(formatAMPM(new Date()));
 	}, 1000);
 
-	setHeadingDate(active_day);
-
 	try{
 		todos = JSON.parse(localStorage.getItem('todo'));
 	}catch(err){
@@ -60,9 +58,14 @@ function populateTodo(n){
 		}
 	}
 	addBlankRow();
+	setHeadingDate(active_day);
 }
 
 function setHeadingDate(d){
+	var date = getDateString(active_day);
+	$("tr").hide();
+	$("."+date).show();
+	$(".blank").show();
 	var options = { weekday: 'long', month: 'long', day: 'numeric' };
 	var date = new Date(d);
 	$('#active-date').html(date.toLocaleDateString("en-US", options));
@@ -96,7 +99,7 @@ $("#todo-list").on('keyup', 'textarea', function() {
 	if(id != undefined){
 		tasks[id].task = $(this).val();
 	}else if($(this).val() != ""){
-		tasks.push({'task':$(this).val(), 'date': new Date(), 'done': false});
+		tasks.push({'task':$(this).val(), 'date': active_day, 'done': false});
 		$(this).parent().parent().attr('id', tasks.length-1);
 		$(this).parent().parent().removeClass('blank');
 		$(this).parent().parent().addClass(getDateString(tasks[tasks.length-1].date));
@@ -120,19 +123,11 @@ $("#todo-select").on('change', function(){
 
 $("#left-arrow").click(function() {
 	active_day = active_day.subtractDays(1);
-	var date = getDateString(active_day);
-	$("tr").hide();
-	$("."+date).show();
-	$(".blank").show();
 	setHeadingDate(active_day);
 });
 
 $("#right-arrow").click(function() {
 	active_day = active_day.addDays(1);
-	var date = getDateString(active_day);
-	$("tr").hide();
-	$("."+date).show();
-	$(".blank").show();
 	setHeadingDate(active_day);
 });
 
