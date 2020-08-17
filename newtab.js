@@ -95,7 +95,7 @@ $("#todo-list").on('keyup', 'textarea', function() {
 	var tasks = todos[$("#todo-select").val()].list;
 	if(id != undefined){
 		tasks[id].task = $(this).val();
-	}else{
+	}else if($(this).val() != ""){
 		tasks.push({'task':$(this).val(), 'date': new Date(), 'done': false});
 		$(this).parent().parent().attr('id', tasks.length-1);
 		$(this).parent().parent().removeClass('blank');
