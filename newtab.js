@@ -38,7 +38,7 @@ function addBlankRow(){
 
 function getDateString(d){
 	var date = new Date(d);
-	return datestring = date.getMonth() + "-" + date.getDay();
+	return datestring = date.getMonth() + "-" + date.getDate();
 }
 
 function populateTodo(n){
@@ -52,9 +52,11 @@ function populateTodo(n){
 	if(mylist.length != 0){
 		$("#todo-list").html();
 		for(var i = 0; i < mylist.length; i++){
+			if((new Date() - new Date(mylist[i].date))/(1000 * 3600 * 24) > 5) mylist[i].done = true;
 			if(mylist[i].done){
 				todos[n].list.splice(i, 1);
 				i--;
+				continue;
 			}else{
 				var html = "<tr id='"+i+"' class='"+getDateString(mylist[i].date)+"'><td><label class='check-cont'><input type='checkbox'><span class='checkmark'></span></label></td>";
 				html += "<td><textarea>"+mylist[i].task+"</textarea></td></tr>";
@@ -134,7 +136,7 @@ $("#todo-select").on('change', function(){
 });
 
 $("#left-arrow").click(function() {
-	active_day = active_day.subtractDays(1);
+	if((new Date() - new Date(active_day))/(1000 * 3600 * 24) < 5) active_day = active_day.subtractDays(1);
 	setHeadingDate(active_day);
 });
 
