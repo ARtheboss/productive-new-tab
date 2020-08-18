@@ -63,6 +63,9 @@ function populateTodo(n){
 		}
 	}
 	addBlankRow();
+	for(var i = 0; i < mylist.length; i++){
+		$("#"+i).find('textarea').eq(0).css('height' , getTextAreaHeight(mylist[i].task));
+	}
 	if(!todos[n].type) setHeadingDate(active_day);
 }
 
@@ -96,9 +99,13 @@ $("#todo-list").on('keypress', 'textarea',function(e) {
     }
 });
 
+function getTextAreaHeight(val){
+	var width = $('.blank').find('textarea').eq(0).width()/8.2;
+	return Math.max(1, Math.ceil(val.length / width)) * 27 + 3 +"px";
+}
+
 $("#todo-list").on('keyup', 'textarea', function() {
-	var width = $(this).width()/8.2;
-	$(this).css("height", Math.max(1, Math.ceil($(this).val().length / width)) * 27 + 3 +"px");
+	$(this).css("height",getTextAreaHeight($(this).val()));
 	var id = $(this).parent().parent().attr('id');
 	var tasks = todos[$("#todo-select").val()].list;
 	if(id != undefined){
