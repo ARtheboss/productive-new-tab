@@ -36,7 +36,7 @@ function renderTodo(){
 		todos = null;
 	}
 	if(todos == null){
-		todos = [{'name':'Default', 'type': 0, 'list': []}];
+		todos = [{'name':'Important', 'type': 0, 'list': []}];
 		localStorage.setItem('todo', JSON.stringify(todos));
 	}
 

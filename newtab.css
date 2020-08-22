@@ -84,8 +84,7 @@ h1{
 #todo-cont{
 	width: 32.4vw;
 	background: rgb(200, 200, 200);
-	margin: auto;
-	margin-top: 6vh;
+	margin: 6vh auto;
 }
 .todo-head{
 	width: 100%;
@@ -212,4 +211,36 @@ td textarea:focus{
 	margin-top: 1.8vh;
 	margin-right: 1vh;
 	cursor: pointer;
+}
+
+.more-info{
+	display: inline-block;
+	color: rgb(150, 150, 150);
+	margin-right: -2vh;
+	width: 3vh;
+	text-align: center;
+	padding: .5vh 0;
+	border-radius: 3vh;
+}
+.more-info:hover{
+	background: rgb(190, 190, 190);
+}
+
+
+.popup-menu{
+	display: none;
+	position: absolute;
+	width: 8vw;
+	border: solid black 1px;
+	background: black;
+}
+.popup-item{
+	width: 100%;
+	height: 3vh;
+	text-indent: 1vh;
+	line-height: 3vh;
+	background: white;
+}
+.popup-item:hover{
+	background: rgb(240,240,240);
 }

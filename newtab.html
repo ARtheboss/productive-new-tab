@@ -13,27 +13,27 @@
 			<a href='options.html'><span class='fa fa-cog' id='settings'></span></a>
 		</div>
 		<div class='mid bar'>
-			<h1 id='time'>1:23 PM</h1>
+			<h1 id='time'></h1>
 		</div>
 		<div class='nav bar'>
-			<span class='nav-item'>
+			<span class='nav-item' id='search-n'>
+				<img src='assets/search.png'>
+			</span>
+			<span class='nav-item' id='notes-n'>
+				<img src='assets/notes.png'>
+			</span>
+			<span class='nav-item active' id='todo-n'>
 				<img src='assets/todo.png'>
 			</span>
-			<span class='nav-item'>
-				<img src='assets/todo.png'>
+			<span class='nav-item' id='tab-groups-n'>
+				<img src='assets/tab-groups.png'>
 			</span>
-			<span class='nav-item active'>
-				<img src='assets/todo.png'>
-			</span>
-			<span class='nav-item'>
-				<img src='assets/todo.png'>
-			</span>
-			<span class='nav-item'>
-				<img src='assets/todo.png'>
+			<span class='nav-item' id='reading-list-n'>
+				<img src='assets/reading-list.png'>
 			</span>
 		</div>
 
-		<div id='todo' class='menu'>
+		<div id='todo-m' class='menu'>
 			<div id='todo-cont'>
 				<div class='todo-head'>
 					<select id='todo-select'></select>
@@ -47,6 +47,11 @@
 				<table class='body' id='todo-list'>
 				</table>
 			</div>
+			<div class='popup-menu' id='todo-popup'>
+				<div class='popup-item'>Move to next day</div>
+				<div class='popup-item'>Move to last day</div>
+			</div>
+		</div>
 		</div>
 
 		<script src="newtab.js"></script>

@@ -9,8 +9,9 @@ $(document).ready(function () {
 
 	$('#welcome').html("Welcome, "+localStorage.getItem('name'));
 
+	$('#time').html(formatAMPM(new Date()));
 	setInterval(function() {
-		$('time').html(formatAMPM(new Date()));
+		$('#time').html(formatAMPM(new Date()));
 	}, 1000);
 
 	try{
@@ -23,7 +24,7 @@ $(document).ready(function () {
 			$("#todo-select").append("<option value='"+i+"'>"+todos[i].name+"</option>");
 		}
 	}else{
-		todos = [{'name':'Default', 'type': 0, 'list': []}];
+		todos = [{'name':'Important', 'type': 0, 'list': []}];
 		localStorage.setItem('todo', JSON.stringify(todos));
 		for(var i = 0; i < todos.length; i++){
 			$("#todo-select").append("<option value='"+i+"'>"+todos[i].name+"</option>");
@@ -33,7 +34,7 @@ $(document).ready(function () {
 });
 
 function addBlankRow(){
-	$("#todo-list").append("<tr class='blank'><td><label class='check-cont'><input type='checkbox'><span class='checkmark'></span></label></td><td><textarea></textarea></td></tr>");
+	$("#todo-list").append("<tr class='blank'><td><label class='check-cont'><input type='checkbox'><span class='checkmark'></span></label></td><td><textarea></textarea></td><td><i class='fa fa-ellipsis-v more-info'></i></td></tr>");
 }
 
 function getDateString(d){
@@ -59,7 +60,7 @@ function populateTodo(n){
 				continue;
 			}else{
 				var html = "<tr id='"+i+"' class='"+getDateString(mylist[i].date)+"'><td><label class='check-cont'><input type='checkbox'><span class='checkmark'></span></label></td>";
-				html += "<td><textarea>"+mylist[i].task+"</textarea></td></tr>";
+				html += "<td><textarea>"+mylist[i].task+"</textarea></td><td><i class='fa fa-ellipsis-v more-info'></i></td></tr>";
 				$("#todo-list").append(html);
 			}
 		}
@@ -101,6 +102,18 @@ $("#todo-list").on('keypress', 'textarea',function(e) {
     }
 });
 
+$(document).mouseup(function(e) {
+    if (!$("#todo-popup").is(e.target) && $("#todo-popup").has(e.target).length === 0) {
+        $("#todo-popup").hide();
+    }
+});
+
+$("#todo-list").on('click', '.more-info', function(){
+	var pos = $(this).offset();
+	$("#todo-popup").show();
+	$("#todo-popup").css({top: pos.top + 20, left: pos.left + 10});
+});
+
 function getTextAreaHeight(val){
 	var width = $('.blank').find('textarea').eq(0).width()/8.2;
 	return Math.max(1, Math.ceil(val.length / width)) * 27 + 3 +"px";
@@ -117,8 +130,8 @@ $("#todo-list").on('keyup', 'textarea', function() {
 		$(this).parent().parent().attr('id', tasks.length-1);
 		$(this).parent().parent().removeClass('blank');
 		$(this).parent().parent().addClass(getDateString(tasks[tasks.length-1].date));
+		addBlankRow();
 	}
-	console.log(todos);
 });
 
 $("#todo-list").on('change', 'textarea', function() {
@@ -150,12 +163,15 @@ $("#right-arrow").click(function() {
 $(".nav-item").click(function(){
 	$(".nav-item").removeClass('active');
 	$(this).addClass('active');
+	$(".menu").hide();
+	var menu = $(this).attr('id').substring(0, $(this).attr('id').length - 2);
+	$("#"+menu+"-m").show();
 });
 
 function formatAMPM(date) {
   var hours = date.getHours();
   var minutes = date.getMinutes();
-  var ampm = hours >= 12 ? 'pm' : 'am';
+  var ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
   minutes = minutes < 10 ? '0'+minutes : minutes;
