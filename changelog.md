@@ -3,3 +3,4 @@
 	Functional options, new tab, and popup
 0.0.0.2:
 	Hover function bug fix and refinement
+	Folder organization

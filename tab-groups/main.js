@@ -106,7 +106,7 @@ class TabGroup extends Tool{
 
 	initPopup(){
 		$("#content").append("<div class='tool' id='t-tg'><div class='tool-title'>tab-groups</div><div class='tool-content' id='t-tg-cont'></div></div>");
-		$("#t-tg-cont").load('tab-groups/popup.html');
+		$("#t-tg-cont").load('../tab-groups/popup.html');
 
 		var self = this;
 		setTimeout(function(){

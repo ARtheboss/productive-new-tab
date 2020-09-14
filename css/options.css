@@ -1,0 +1,119 @@
+
+
+html, body{
+	margin: 0;
+}
+h1{
+	color: var(--colorText);
+	padding-left: 2vw;
+	line-height: 7vh;
+}
+.header{
+	width: 100%;
+	height: 7vh;
+	background: var(--colorOne);
+}
+.body{
+	display: flex;
+	width: 100%;
+	height: 93vh;
+}
+.sidebar{
+	flex: 20%;
+	height: 100%;
+	background: var(--colorTwo);
+}
+.content{
+	flex: 80%;
+	height: 100%;
+	padding: 1vw;
+}
+.welcome{
+	text-align: center;
+	color: var(--colorText);
+	font-size: 3vh;
+	padding: 3vh;
+}
+.sidemenu{
+	width: 100%;
+	color: var(--colorText);
+	text-align: center;
+	padding: 1vh 0;
+	font-size: 2vh;
+	cursor: pointer;
+}
+.sidemenu:hover{
+	background: var(--colorTextHov);
+}
+.menu{
+	display: none;
+}
+table{
+	margin: 10%;
+	width: 80%;
+	background: var(--colorTwo);
+}
+td, th{
+	border: solid 1px var(--colorText);
+	padding: 1vw;
+}
+.delete{
+	cursor: pointer;
+}
+textarea{
+	width: 100%;
+	height: 10vh;
+}
+
+h2{
+	text-align: center;
+	color: var(--colorOne);
+}
+
+.g-block{
+	text-align: center;
+	background: var(--colorTwo);
+	width: 50%;
+	padding: 3vh 0;
+	margin: 1vh auto;
+}
+.g-block h3{
+	margin: 0 0 1vh 0;
+	color: var(--colorOne);
+}
+.g-block label{
+	color: var(--colorOne);
+	font-size: 2vh;
+}
+
+ul{
+	list-style-type: none;
+	padding: 1vh 1vh;
+	background: var(--colorOne);
+	width: 80%;
+	margin: auto;
+	color: var(--colorText);
+}
+li{
+	display: block;
+	text-align: left;
+	background: var(--colorTwo);
+	color: var(--colorOne);
+	width: 95%;
+	margin: 1vh auto;
+	padding: 1vh;
+	cursor: move;
+}
+.divider{
+	text-align: center;
+	color: var(--colorText);
+	margin: 0;
+	padding: 0;
+	background: var(--colorOne);
+}
+li h4{
+	margin: 0;
+}
+li p{
+	margin: 0;
+}

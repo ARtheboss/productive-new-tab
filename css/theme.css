@@ -1,0 +1,8 @@
+html{
+	--colorOne: rgb(100, 100, 110);
+	--colorOneHov: rgb(95, 95, 105);
+	--colorTwo: rgb(200, 200, 205);
+	--colorTwoHov: rgb(190, 190, 195);
+	--colorText: rgb(250, 250, 255);
+	--colorTextHov: rgb(235, 235, 240);
+}
