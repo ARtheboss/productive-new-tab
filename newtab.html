@@ -1,9 +1,10 @@
 <html>
   	<head>
-  		<script src="jquery.js"></script>
-  		<script src="textarea.js"></script>
+  		<script src="js/jquery.js"></script>
+  		<link rel="stylesheet" type="text/css" href="theme.css">
   		<link rel="stylesheet" type="text/css" href="newtab.css">
   		<link rel="stylesheet" href="assets/fa/css/font-awesome.min.css">
+  		<script src='js/color.js'></script>
   		<title>New Tab</title>
 	</head>
 	<body>
@@ -15,7 +16,8 @@
 		<div class='mid bar'>
 			<h1 id='time'></h1>
 		</div>
-		<div class='nav bar'>
+		<div class='nav bar' id='menu-bar'>
+			<!--
 			<span class='nav-item' id='search-n'>
 				<img src='assets/search.png'>
 			</span>
@@ -30,31 +32,13 @@
 			</span>
 			<span class='nav-item' id='reading-list-n'>
 				<img src='assets/reading-list.png'>
-			</span>
+			</span>-->
 		</div>
 
-		<div id='todo-m' class='menu'>
-			<div id='todo-cont'>
-				<div class='todo-head'>
-					<select id='todo-select'></select>
-					<span id='date-all-toggle'>All</span>
-				</div>
-				<div class='heading'>
-					<span id='left-arrow' class='fa fa-chevron-left'></span>
-					<span id='active-date'></span>
-					<span id='right-arrow' class='fa fa-chevron-right'></span>
-				</div>
-				<table class='body' id='todo-list'>
-				</table>
-			</div>
-			<div class='popup-menu' id='todo-popup'>
-				<div class='popup-item'>Move to next day</div>
-				<div class='popup-item'>Move to last day</div>
-			</div>
-		</div>
-		</div>
-
-		<script src="newtab.js"></script>
+		<script src="js/newtab.js"></script>
+		<script src='js/tool.js'></script>
+		<script src="todo/main.js"></script>
+		<script src="tab-groups/main.js"></script>
 
 	</body>
 </html>

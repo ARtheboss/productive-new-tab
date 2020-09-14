@@ -1,8 +1,11 @@
 <html>
   	<head>
-  		<script src="jquery.js"></script>
+  		<script src="js/jquery.js"></script>
+  		<script src="js/jquery-ui.js"></script>
+  		<link rel="stylesheet" type="text/css" href="theme.css">
   		<link rel="stylesheet" type="text/css" href="options.css">
   		<link rel="stylesheet" href="assets/fa/css/font-awesome.min.css">
+  		<script src='js/color.js'></script>
   		<title>New Tab Options</title>
 	</head>
 	<body>
@@ -10,31 +13,43 @@
 			<h1>Productive New Tab</h1>
 		</div>
 		<div class='body'>
-			<div class='sidebar'>
+			<div class='sidebar' id='sidebar'>
 				<div class='welcome'>Welcome, Advay</div>
-				<div class='sidemenu'>Todo</div>
+				<div class='sidemenu' id='n-general'>general</div>
 			</div>
-			<div class='content'>
-				<div class='menu Todo'>
-					<table id='todo-table'>
-						<tr>
-							<th>Name</th>
-							<th>Type</th>
-							<th># Events</th>
-							<th>Delete</th>
-						</tr>
-					</table>
-					<button id='add-todo'>Add Todo</button>
-					<input id='todo-name' placeholder='Name of Todo'>
-					<select id='todo-type'>
-						<option disabled>Todo type</option>
-						<option value='0'>Day-to-day</option>
-						<option value='1'>Long-term</option>
-					</select>
+			<div class='content' id='content'>
+				<div id='m-general' class='menu' style='display: block;'>
+					<h2>Thank you for downloading this extension</h2>
+					<div class='g-block'>
+						<h3>Personal Info</h3>
+						<label>Name</label>
+						<input id='name' type='text'>
+					</div>
+					<div class='g-block'>
+						<h3>Tools</h3>
+						<ul id="tools">
+							Using
+						</ul>
+						 
+					</div>
+					<div class='g-block'>
+						<h3>Theme</h3>
+						<label>Primary Color</label>
+						<input id='p-color' type='color'>
+						<br><br>
+						<label>Secondary Color</label>
+						<input id='s-color' type='color'>
+						<br><br>
+						<label>Text Color</label>
+						<input id='t-color' type='color'>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<script src='options.js'></script>
+		<script src='js/options.js'></script>
+		<script src='js/tool.js'></script>
+		<script src='todo/main.js'></script>
+		<script src='tab-groups/main.js'></script>
 	</body>
 </html>
