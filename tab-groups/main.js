@@ -37,9 +37,16 @@ class TabGroup extends Tool{
 			this.getData();
 			$("#tab-groups-cont").html("");
 			for(var i = 0; i < this.data.length; i++){
+				var subtitle = [];
+				for(var j = 0; j < this.data[i].list.length; j++){
+					var u = this.data[i].list[j].substr(8);
+					var modified = u.substr(0,u.indexOf("/"))
+					if(subtitle.indexOf(modified) == -1) subtitle.push(modified);
+				}
+				subtitle = subtitle.join(' ')
 				var html = "<div class='tab-group-item' id='"+i+"-group'><div class='tg-text'>"
 				html += "<h2 class='tg-title'>"+this.data[i].name+"</h2>";
-				html += "<p class='tg-subtitle'>Under work</p>"
+				html += "<p class='tg-subtitle'>"+subtitle+"</p>"
 				html += "</div><div class='tg-icon'><i class='fa fa-window-restore'></i></div></div>";
 				$("#tab-groups-cont").append(html);
 			}

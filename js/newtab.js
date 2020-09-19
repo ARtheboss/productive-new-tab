@@ -4,6 +4,10 @@ var tm;
 
 var active_day = new Date();
 
+var images;
+
+var time_since_click = 0;
+
 $(document).ready(function () {
 
 	/*
@@ -15,9 +19,17 @@ $(document).ready(function () {
 	$('#time').html(formatAMPM(new Date()));
 	setInterval(function() {
 		$('#time').html(formatAMPM(new Date()));
-	}, 1000);
+		time_since_click += 0.1;
+		if(time_since_click > 10){
+			$('.menu').css('opacity',0.6);
+		}else{
+			$('.menu').css('opacity',1);
+		}
+	}, 100);
 
 	tm = new ToolManager('tab');
+
+	images = new ImageLoader();
 
 	$(".nav-item").click(function(){
 		$(".nav-item").removeClass('active');
@@ -25,7 +37,16 @@ $(document).ready(function () {
 		tm.showTool($(this).attr('id').substring(2));
 	});
 
+	//$('body').css('background','url("https://www.mepixels.com/cache/61e52391/4k-ultra-hd-desktop-wallpaper-1140x1140-ya2Qw1kIC.jpeg")')
+
 });
+
+$('body').on('click', function(){
+	time_since_click = 0;
+});
+$('body').on('mouseenter', '.menu', function(){
+	time_since_click = 0;
+})
 
 function formatAMPM(date) {
   var hours = date.getHours();

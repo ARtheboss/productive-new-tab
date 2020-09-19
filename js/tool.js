@@ -29,7 +29,7 @@ class Tool {
 		this.createTabNav();
 
 		var self = this;
-		setTimeout(function(){self.tabOnclicks()}, 50);
+		setTimeout(function(){self.tabOnclicks()}, 80);
 	}
 	createTabNav(){
 		$("#menu-bar").append("<span class='nav-item' id='n-"+this.tool+"'><i class='fa fa-"+this.fa+"'></span>");
@@ -43,7 +43,7 @@ class Tool {
 		this.createOptionsNav();
 
 		var self = this;
-		setTimeout(function(){self.optionsOnclicks()}, 50);
+		setTimeout(function(){self.optionsOnclicks()}, 80);
 	}
 	createOptionsNav(){
 		$("#sidebar").append("<div class='sidemenu' id='n-"+this.tool+"'>"+this.tool+"</div>");
@@ -90,7 +90,7 @@ class ToolManager {
 		this.saveData();
 		if(st){
 			var self = this;
-			setTimeout(function(){self.showTool(self.tools[0].tool)},50);
+			setTimeout(function(){self.showTool(self.tools[0].tool)},80);
 		}
 	}
 	saveData(){

@@ -1,10 +1,14 @@
 
 var tm;
 
+var images;
+
 $(document).ready(function() {
 
 
 	tm = new ToolManager('options', false);
+
+	images = new ImageLoader('options');
 
 	$(document).on('click', '.sidemenu',function(){
 		//$(".nav-item").removeClass('active');

@@ -4,3 +4,4 @@
 0.0.0.2:
 	Hover function bug fix and refinement
 	Folder organization
+	Open options page on installation
