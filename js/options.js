@@ -3,10 +3,11 @@ var tm;
 
 var images;
 
-$(document).ready(function() {
+$(document).ready(async function() {
 
 
-	tm = new ToolManager('options', false);
+	tm = new ToolManager('options');
+	await tm.init(false);
 
 	images = new ImageLoader('options');
 

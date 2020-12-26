@@ -1,5 +1,17 @@
 
-var tool_dict = {'todo':{'description':'A todo list to keep track of your deliverables'},'tab-groups':{'description':'A way to open a saved group of tabs together'}}
+var tool_dict = {'todo':{'description':'A todo list to keep track of your deliverables'},'tab-groups':{'description':'A way to open a saved group of tabs together'},'reading-list':{'description':'Save the materials you wanted to look at for later.'}}
+
+const aLocalStorage = {
+    setItem: async function (key, value) {
+        await null;
+        return localStorage.setItem(key, value);
+    },
+    getItem: async function (key) {
+        await null;
+        return localStorage.getItem(key);
+    }
+};
+
 
 class Tool {
 
@@ -8,45 +20,36 @@ class Tool {
 		this.loc = loc;
 	}
 
-	initPage(){
+	async initPage(){
 		if(this.loc == "tab"){
-			this.initTab();
+			await this.initTab();
 		}else if(this.loc == "options"){
-			this.initOptions();
+			await this.initOptions();
 		}else if(this.loc == "popup"){
 			this.initPopup();
 		}
 	}
 
-	saveData(){
-		localStorage.setItem(this.tool, JSON.stringify(this.data))
+	async saveData(){
+		await aLocalStorage.setItem(this.tool, JSON.stringify(this.data))
 	}
 
-	initTab(){
+	async initTab(){
 		$('body').append("<div id='menu-"+this.tool+"' class='menu'></div>");
-		$("#menu-"+this.tool).load('../'+this.tool+'/tab.html');
-
-		this.createTabNav();
-
-		var self = this;
-		setTimeout(function(){self.tabOnclicks()}, 80);
-	}
-	createTabNav(){
 		$("#menu-bar").append("<span class='nav-item' id='n-"+this.tool+"'><i class='fa fa-"+this.fa+"'></span>");
-	}
-
-
-	initOptions(){
-		$('#content').append("<div id='menu-"+this.tool+"' class='menu'></div>");
-		$("#menu-"+this.tool).load('../'+this.tool+'/options.html');
-
-		this.createOptionsNav();
-
 		var self = this;
-		setTimeout(function(){self.optionsOnclicks()}, 80);
+		$("#menu-"+this.tool).load('../'+this.tool+'/tab.html', function(){
+			self.tabOnclicks();
+		});
 	}
-	createOptionsNav(){
+
+	async initOptions(){
+		$('#content').append("<div id='menu-"+this.tool+"' class='menu'></div>");
 		$("#sidebar").append("<div class='sidemenu' id='n-"+this.tool+"'>"+this.tool+"</div>");
+		var self = this;
+		$("#menu-"+this.tool).load('../'+this.tool+'/options.html', function(){
+			self.optionsOnclicks();
+		});
 	}
 
 	hideMenu(){
@@ -58,13 +61,13 @@ class Tool {
 		this.populateData();
 	}
 
-	getCurrentTab(){
+	async getCurrentTab(){
 		var query = { active: true, currentWindow: true };
 		var self = this;
 		function callback(tabs) {
 			self.tab = tabs[0].url;
 		}
-		chrome.tabs.query(query, callback);
+		await chrome.tabs.query(query, callback);
 	}
 
 }
@@ -76,34 +79,39 @@ Tool.prototype.toString = function (){
 
 class ToolManager {
 
-	constructor(loc, st = true){
+	constructor(loc){
 		this.tools = [];
 		this.loc = loc;
+	}
+	async init(st = true){
 		try{
-			this.tools = JSON.parse(localStorage.getItem('tools'));
+			this.tools = JSON.parse(await aLocalStorage.getItem('tools'));
 		}catch(err){
 			this.tools = ['todo','tab-groups'];
 		}
 		if(this.tools == null){
 			this.tools = ['todo','tab-groups'];
 		}
-		this.saveData();
+		await this.saveData();
 		if(st){
 			var self = this;
-			setTimeout(function(){self.showTool(self.tools[0].tool)},80);
+			setTimeout(function(){self.showTool(self.tools[0].tool)},200);
 		}
 	}
-	saveData(){
-		localStorage.setItem('tools', JSON.stringify(this.tools));
+	async saveData(){
+		await aLocalStorage.setItem('tools', JSON.stringify(this.tools));
 		if(this.loc == 'options'){
 			$('#sidebar').html("<div class='welcome'>Welcome, Advay</div><div class='sidemenu' id='n-general'>general</div>")
-			$('.welcome').html("Welcome, "+localStorage.getItem('name'));
+			$('.welcome').html("Welcome, "+await aLocalStorage.getItem('name'));
 		}
 		for (var i = 0; i < this.tools.length; i++) {
 			if(this.tools[i] == 'todo')
 				this.tools[i] = new Todo(this.loc);
 			else if(this.tools[i] == 'tab-groups')
 				this.tools[i] = new TabGroup(this.loc);
+			else if(this.tools[i] == 'reading-list')
+				this.tools[i] = new ReadingList(this.loc);
+			await this.tools[i].initPage();
 		}
 	}
 

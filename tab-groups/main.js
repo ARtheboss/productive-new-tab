@@ -5,20 +5,19 @@ class TabGroup extends Tool{
 		super(loc, 'tab-groups');
 		this.fa = 'external-link'
 		this.loc = loc;
-		this.initPage();
 	}
 
-	getData(){
+	async getData(){
 		this.data = [];
 		try{
-			this.data = JSON.parse(localStorage.getItem('tab-groups'));
+			this.data = JSON.parse(await aLocalStorage.getItem('tab-groups'));
 		}catch(err){
 			this.data = [{'name':'Sample', 'list': ['https://www.google.com']}];
-			this.saveData();
+			await this.saveData();
 		}
 		if(this.data == null){
 			this.data = [{'name':'Sample', 'list': ['https://www.google.com']}];
-			this.saveData();
+			await this.saveData();
 		}
 	}
 
@@ -32,9 +31,9 @@ class TabGroup extends Tool{
 		});
 	}
 
-	populateData(){
+	async populateData(){
 		if(this.loc == 'tab'){
-			this.getData();
+			await this.getData();
 			$("#tab-groups-cont").html("");
 			for(var i = 0; i < this.data.length; i++){
 				var subtitle = [];
@@ -67,12 +66,12 @@ class TabGroup extends Tool{
 		}
 	}
 
-	populateOptionsTable(){
-		this.getData();
+	async populateOptionsTable(){
+		await this.getData();
 		$("#tg-table").html("<tr><th style='width: 20%;'>Name</th><th>Links</th><th>Delete</th></tr>");
 		for(var l = 0; l < this.data.length; l++){
 			var html = "<tr id='tg-"+l+"'>";
-			html += "<td><input value='"+this.data[l].name+"'></td>";
+			html += "<td><input type='text' value='"+this.data[l].name+"'></td>";
 			html += "<td><textarea>";
 			var list = this.data[l].list;
 			for(var link = 0; link < list.length; link++){
@@ -111,28 +110,23 @@ class TabGroup extends Tool{
 	}
 
 
-	initPopup(){
-		$("#content").append("<div class='tool' id='t-tg'><div class='tool-title'>tab-groups</div><div class='tool-content' id='t-tg-cont'></div></div>");
-		$("#t-tg-cont").load('../tab-groups/popup.html');
-
+	async initPopup(){
+		$("#content").append("<div class='tool' id='t-tg'><div class='tool-title'>tab-groups<div class='loader' id='tg-loader'></div></div><div class='tool-content' id='t-tg-cont'></div></div>");
+		await this.getData();
 		var self = this;
-		setTimeout(function(){
-			self.getData();
+		$("#t-tg-cont").load('../tab-groups/popup.html', function(){
 			for (var i = 0; i < self.data.length; i++) {
 				$("#my-tgs").append("<option value='"+i+"'>"+self.data[i].name+"</option>");
 			}
-		}, 50);
-
-		setTimeout(function(){self.popupOnclicks()}, 50);
+			self.popupOnclicks()
+		});
 	}
 	popupOnclicks(){
 		var self = this;
-		$("#add-to-tg-but").on('click', function(){
-			self.getCurrentTab();
-			setTimeout(function(){
-				self.data[$("#my-tgs").val()].list.push(self.tab);
-				self.saveData();
-			}, 50);
+		$("#add-to-tg-but").on('click', async function(){
+			await self.getCurrentTab();
+			self.data[$("#my-tgs").val()].list.push(self.tab);
+			await self.saveData();
 		});
 	}
 

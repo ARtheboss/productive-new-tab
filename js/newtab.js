@@ -8,7 +8,7 @@ var images;
 
 var time_since_click = 0;
 
-$(document).ready(function () {
+$(document).ready(async function () {
 
 	/*
 	$("#todo-m").show();
@@ -28,6 +28,7 @@ $(document).ready(function () {
 	}, 100);
 
 	tm = new ToolManager('tab');
+	await tm.init();
 
 	images = new ImageLoader();
 
@@ -45,6 +46,9 @@ $('body').on('click', function(){
 	time_since_click = 0;
 });
 $('body').on('mouseenter', '.menu', function(){
+	time_since_click = 0;
+})
+$('body').on('keyup', '.menu', function(){
 	time_since_click = 0;
 })
 

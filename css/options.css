@@ -60,6 +60,10 @@ td, th{
 	border: solid 1px var(--colorText);
 	padding: 1vw;
 }
+th{
+	background: var(--colorOne);
+	color: var(--colorTwo);
+}
 .delete{
 	cursor: pointer;
 }
@@ -141,4 +145,33 @@ li p{
 	position: absolute;
 	right: 0;
 	cursor: pointer;
+}
+
+input[type=text], textarea{
+	border-width: 0 0 .3vh 0;
+	border-style: solid;
+	border-color: var(--colorOne);
+	outline: none;
+	background: var(--colorTwo);
+	color: var(--colorOne);
+}
+input[type=text]:focus,textarea:focus{
+	background: var(--colorOne);
+	color: var(--colorTwo);
+}
+input[type=text]{
+	height: 2.5vh;
+	font-size: 2vh;
+	line-height: 2.5vh;
+}
+.delete{
+	background: var(--colorOne);
+	color: var(--colorTwo);
+	text-align: center;
+}
+select{
+	background: var(--colorOne);
+	color: var(--colorTwo);
+	border: none;
+	padding: .5vh .5vw;
 }

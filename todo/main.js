@@ -20,7 +20,6 @@ class Todo extends Tool{
 		this.loc = loc;
 		this.active_day = new Date();
 		this.selected_item = 0;
-		this.initPage();
 	}
 
 
@@ -31,7 +30,6 @@ class Todo extends Tool{
 		$("#todo-list").on('keypress', 'textarea',function(e) {
 		    if(e.which == 13) {
 		    	e.preventDefault();
-		    	self.addBlankRow();
 		    	$(this).parent().parent().next().find('textarea').eq(0).focus();
 		    }
 		});
@@ -93,7 +91,7 @@ class Todo extends Tool{
 
 	}
 
-	getData(){
+	async getData(){
 		this.data = [];
 		try{
 			this.data = JSON.parse(localStorage.getItem('todo'));
@@ -124,8 +122,8 @@ class Todo extends Tool{
 		}
 	}
 
-	populateTodoList(n){
-		this.getData();
+	async populateTodoList(n){
+		await this.getData();
 		this.setHeadings(n);
 		var mylist = this.data[n].list;
 		$("#todo-list").html("");
@@ -216,7 +214,7 @@ class Todo extends Tool{
 		$("#todo-table").html("<tr><th>Name</th><th>Type</th><th># Events</th><th>Delete</th></tr>");
 		for(var l = 0; l < this.data.length; l++){
 			var html = "<tr id='todo-"+l+"'>";
-			html += "<td><input value='"+this.data[l].name+"'></td>";
+			html += "<td><input type='text' value='"+this.data[l].name+"'></td>";
 			html += "<td><select>";
 			html += (!this.data[l].type) ? "<option value='0' selected>Day-to-day</option>" : "<option value='0'>Day-to-day</option>";
 			html += (!this.data[l].type) ? "<option value='1'>Long term</option>" : "<option value='1' selected>Long term</option>";
