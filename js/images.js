@@ -9,12 +9,14 @@ class ImageLoader {
 	async init(loc){
 		try{
 			this.images = JSON.parse(localStorage.getItem('images'));
+			this.images.length;
 		}catch(err){
 			this.images = ['https://www.mepixels.com/cache/61e52391/4k-ultra-hd-desktop-wallpaper-1140x1140-ya2Qw1kIC.jpeg','https://c.pxhere.com/photos/94/59/blue_sky_building_cold_colorful_daylight_desktop_backgrounds_glacier_HD_wallpaper-1525457.jpg!d','https://c.pxhere.com/photos/c2/4b/blue_sky_clouds_flying_HD_wallpaper_over_the_clouds_sky-911793.jpg!d'];
 			this.saveImages(false);
 		}
 		try{
 			this.shownImages = JSON.parse(localStorage.getItem('shownImages'));
+			this.shownImages.includes(0);
 		}catch(err){
 			this.shownImages = [];
 		}
@@ -68,7 +70,7 @@ class ImageLoader {
 		this.showImage(this.nextImage());
 		var self = this;
 		setInterval(function(){
-			self.showImage(this.nextImage());
+			self.showImage(self.nextImage());
 		}, 20000);
 	}
 

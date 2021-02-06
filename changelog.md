@@ -10,3 +10,9 @@
 0.1.0.0:
 	Reading list tool added (new tab, options, and popup)
 	Bug fixes and performance improvements
+0.1.0.1:
+	Background images bug fixes
+0.1.0.2:
+	Background images bug fixes
+0.1.1.0:
+	Save and load new tab data in options menu
