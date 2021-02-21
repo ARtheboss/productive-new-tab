@@ -6,20 +6,7 @@ class ReadingList extends Tool{
 		this.fa = 'book'
 		this.loc = loc;
 		this.justdeleted = false;
-	}
-
-	async getData(){
-		this.data = [];
-		try{
-			this.data = JSON.parse(await aLocalStorage.getItem('reading-list'));
-		}catch(err){
-			this.data = [{'title': 'Google', 'url':'https://www.google.com'}];
-			await this.saveData();
-		}
-		if(this.data == null){
-			this.data = [{'title': 'Google', 'url':'https://www.google.com'}];
-			await this.saveData();
-		}
+		this.default_data = [{'title': 'Google', 'url':'https://www.google.com'}];
 	}
 
 	tabOnclicks(){

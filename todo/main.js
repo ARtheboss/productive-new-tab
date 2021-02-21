@@ -20,9 +20,8 @@ class Todo extends Tool{
 		this.loc = loc;
 		this.active_day = new Date();
 		this.selected_item = 0;
+		this.default_data = [{'name':'Important', 'type': 0, 'list': []}];
 	}
-
-
 
 	tabOnclicks(){
 		var self = this;
@@ -91,20 +90,6 @@ class Todo extends Tool{
 
 	}
 
-	async getData(){
-		this.data = [];
-		try{
-			this.data = JSON.parse(localStorage.getItem('todo'));
-		}catch(err){
-			this.data = [{'name':'Important', 'type': 0, 'list': []}];
-			this.saveData();
-		}
-		if(this.data == null){
-			this.data = [{'name':'Important', 'type': 0, 'list': []}];
-			this.saveData();
-		}
-	}
-
 	populateData(){
 		if(this.loc == 'tab'){
 			this.populateTodoNames();
@@ -114,8 +99,8 @@ class Todo extends Tool{
 		}
 	}
 
-	populateTodoNames(){
-		this.getData();
+	async populateTodoNames(){
+		await this.getData();
 		$("#todo-select").html("");
 		for(var i = 0; i < this.data.length; i++){
 			$("#todo-select").append("<option value='"+i+"'>"+this.data[i].name+"</option>");
@@ -124,9 +109,9 @@ class Todo extends Tool{
 
 	async populateTodoList(n){
 		await this.getData();
-		this.setHeadings(n);
-		var mylist = this.data[n].list;
 		$("#todo-list").html("");
+		var mylist = this.data[n].list;
+		this.setHeadings(n);
 		if(mylist.length != 0){
 			for(var i = 0; i < mylist.length; i++){
 				if(!this.data[n].type) this.checkExpiration(n, i);

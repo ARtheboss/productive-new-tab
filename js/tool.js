@@ -1,5 +1,5 @@
 
-var tool_dict = {'todo':{'description':'A todo list to keep track of your deliverables'},'tab-groups':{'description':'A way to open a saved group of tabs together'},'reading-list':{'description':'Save the materials you wanted to look at for later.'}}
+var tool_dict = {'todo':{'description':'A todo list to keep track of your deliverables'},'tab-groups':{'description':'A way to open a saved group of tabs together'},'reading-list':{'description':'Save the materials you wanted to look at for later.'}, 'notes':{'description': 'Make notes to keep track of information'}}
 
 const aLocalStorage = {
     setItem: async function (key, value) {
@@ -27,6 +27,20 @@ class Tool {
 			await this.initOptions();
 		}else if(this.loc == "popup"){
 			this.initPopup();
+		}
+	}
+
+	async getData(){
+		this.data = [];
+		try{
+			this.data = JSON.parse(await aLocalStorage.getItem(this.tool));
+		}catch(err){
+			this.data = this.default_data;
+			await this.saveData();
+		}
+		if(this.data == null){
+			this.data = this.default_data;
+			await this.saveData();
 		}
 	}
 
@@ -111,6 +125,8 @@ class ToolManager {
 				this.tools[i] = new TabGroup(this.loc);
 			else if(this.tools[i] == 'reading-list')
 				this.tools[i] = new ReadingList(this.loc);
+			else if(this.tools[i] == 'notes')
+				this.tools[i] = new Notes(this.loc);
 			await this.tools[i].initPage();
 		}
 	}

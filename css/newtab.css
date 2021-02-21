@@ -297,3 +297,65 @@ h2.tg-title {
     font-size: 3vh;
     color: var(--colorOne);
 }
+
+
+#notes-cont{
+	margin-top: 5vh;
+	width: 60vw;
+	position: relative;
+	display: flex;
+	background: var(--colorTwo);
+	height: 50vh;
+}
+#note-names-cont{
+	flex: 30%;
+	position: relative;
+}
+#notes{
+	margin: .5vh 0 0 .5vh;
+	overflow: scroll;
+	height: 48vh;
+}
+#notes::-webkit-scrollbar {
+	display: none;
+  }
+#note-actions{
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	width: 100%;
+	border-top: .2vh solid var(--colorText);
+}
+.note-action{
+	text-align: center;
+	flex: 1;
+	border: none;
+	outline: none;
+	padding: .5vh;
+	color: var(--colorText);
+	background: var(--colorTwo);
+	cursor: pointer;
+}
+.note-action:hover{
+	background: var(--colorTwoHov);
+}
+.note-title{
+	padding: 2vh 2vw;
+	cursor: pointer;
+}
+.note-title.active{
+	background: var(--colorOne);
+}
+.note-title input{
+	color: var(--colorText);
+	background: none;
+	outline: none;
+	border: none;
+}
+.note-title input:focus{
+	border-bottom: .2vh solid var(--colorText);
+}
+#notes-content{
+	flex: 70%;
+	background: var(--colorOne);
+}

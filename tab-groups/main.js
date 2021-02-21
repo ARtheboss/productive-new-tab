@@ -5,20 +5,7 @@ class TabGroup extends Tool{
 		super(loc, 'tab-groups');
 		this.fa = 'external-link'
 		this.loc = loc;
-	}
-
-	async getData(){
-		this.data = [];
-		try{
-			this.data = JSON.parse(await aLocalStorage.getItem('tab-groups'));
-		}catch(err){
-			this.data = [{'name':'Sample', 'list': ['https://www.google.com']}];
-			await this.saveData();
-		}
-		if(this.data == null){
-			this.data = [{'name':'Sample', 'list': ['https://www.google.com']}];
-			await this.saveData();
-		}
+		this.default_data = [{'name':'Sample', 'list': ['https://www.google.com']}];
 	}
 
 	tabOnclicks(){
