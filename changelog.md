@@ -18,3 +18,5 @@
 	Save and load new tab data in options menu
 0.2.0.0:
 	Notes tool added
+0.2.0.1:
+	Reading list adding restricted pages fix
