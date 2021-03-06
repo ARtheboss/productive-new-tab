@@ -16,3 +16,5 @@
 	Background images bug fixes
 0.1.1.0:
 	Save and load new tab data in options menu
+0.2.0.0:
+	Notes tool added

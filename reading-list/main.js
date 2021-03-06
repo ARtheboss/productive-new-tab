@@ -74,17 +74,21 @@ class ReadingList extends Tool{
 		$("#add-to-rl-but").on('click', async function(){
 			$("#rl-loader").show();
 			chrome.tabs.query({ active: true, currentWindow: true }, async function(tabs){
-				await $.ajax({
-					url: tabs[0].url,
-					async: true,
-					success: function(data) {
-						var matches = data.match(/<title>(.*?)<\/title>/);
-						if(!matches) self.data.push({'title': tabs[0].url, 'url':tabs[0].url});
-						else self.data.push({'title': matches[0].substring(7, matches[0].length-8), 'url':tabs[0].url});
-						self.saveData();
-					}   
-				});
+				try{
+					await $.ajax({
+						url: tabs[0].url,
+						async: true,
+						success: function(data) {
+							var matches = data.match(/<title>(.*?)<\/title>/);
+							if(!matches) self.data.push({'title': tabs[0].url.substring(0, tabs[0].url.indexOf("/")), 'url':tabs[0].url});
+							else self.data.push({'title': matches[0].substring(7, matches[0].length-8), 'url':tabs[0].url});
+						}
+					});
+				}catch(err){
+					self.data.push({'title': tabs[0].url, 'url':tabs[0].url});
+				}
 				$("#rl-loader").hide();
+				self.saveData();
 			})
 		});
 	}
