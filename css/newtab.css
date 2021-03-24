@@ -106,7 +106,7 @@ h1{
 	color: var(--colorText);
 }
 #todo-select{
-	width: 80%;
+	width: 100%;
 	height: 100%;
 	background: var(--colorOne);
 	color: var(--colorText);
@@ -117,7 +117,6 @@ h1{
 #date-all-toggle{
 	width: 20%;
 	height: 100%;
-	float: right;
 	cursor: pointer;
 	text-align: center;
 	display: inline-block;
@@ -138,6 +137,9 @@ h1{
 table{
 	width: 100%;
 	padding: 1vw;
+}
+tr{
+	cursor: move;
 }
 td{
 	padding: 1vh 0;
@@ -234,11 +236,11 @@ td textarea:focus{
 	text-align: center;
 	padding: .5vh 0;
 	border-radius: 3vh;
+	cursor: pointer;
 }
 .more-info:hover{
 	background: var(--colorTwoHov);
 }
-
 
 .popup-menu{
 	display: none;
@@ -246,6 +248,7 @@ td textarea:focus{
 	width: 8vw;
 	border: solid black 1px;
 	background: black;
+	cursor: pointer;
 }
 .popup-item{
 	width: 100%;

@@ -8,6 +8,8 @@ var images;
 
 var time_since_click = 0;
 
+var count_time = true;
+
 $(document).ready(async function () {
 
 	/*
@@ -19,7 +21,7 @@ $(document).ready(async function () {
 	$('#time').html(formatAMPM(new Date()));
 	setInterval(function() {
 		$('#time').html(formatAMPM(new Date()));
-		time_since_click += 0.1;
+		if(count_time) time_since_click += 0.1;
 		if(time_since_click > 10){
 			$('.menu').css('opacity',0.6);
 		}else{
@@ -46,7 +48,11 @@ $('body').on('click', function(){
 	time_since_click = 0;
 });
 $('body').on('mouseenter', '.menu', function(){
+	count_time = false;
 	time_since_click = 0;
+})
+$('body').on('mouseleave', '.menu', function(){
+	count_time = true;
 })
 $('body').on('keyup', '.menu', function(){
 	time_since_click = 0;

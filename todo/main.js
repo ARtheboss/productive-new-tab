@@ -11,6 +11,15 @@ Date.prototype.subtractDays = function(days) {
     return date;
 }
 
+function array_move(arr, old_index, new_index) {
+    if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {
+            arr.push(undefined);
+        }
+    }
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+};
 
 class Todo extends Tool{
 
@@ -56,6 +65,7 @@ class Todo extends Tool{
 				self.moveToLastDay();
 			else if(index == 2)
 				self.deleteDay();
+			$("#todo-popup").hide();
 		});
 
 		$("#todo-list").on('keyup', 'textarea', function() {
@@ -109,7 +119,7 @@ class Todo extends Tool{
 
 	async populateTodoList(n){
 		await this.getData();
-		$("#todo-list").html("");
+		$("#todo-list").html("<tbody id='list-tbody'></tbody>");
 		var mylist = this.data[n].list;
 		this.setHeadings(n);
 		if(mylist.length != 0){
@@ -122,7 +132,7 @@ class Todo extends Tool{
 				}else{
 					var html = "<tr id='"+i+"' class='"+this.getDateString(mylist[i].date)+"'><td><label class='check-cont'><input type='checkbox'><span class='checkmark'></span></label></td>";
 					html += "<td><textarea>"+mylist[i].task+"</textarea></td><td><i class='fa fa-ellipsis-v more-info'></i></td></tr>";
-					$("#todo-list").append(html);
+					$("#list-tbody").append(html);
 				}
 			}
 		}
@@ -131,6 +141,17 @@ class Todo extends Tool{
 			$("#"+i).find('textarea').eq(0).css('height' , this.getTextAreaHeight(mylist[i].task));
 		}
 		if(!this.data[n].type) this.setHeadingDate(this.active_day);
+
+		var self = this;
+		$("#list-tbody").sortable({
+			update: function(event, ui) { 
+				array_move(self.data[n].list, this.drag_start, ui.item.index());
+				self.saveData();
+			},
+			start: function(event, ui) { 
+				this.drag_start = ui.item.index();
+			}
+		});
 	}
 
 	setHeadings(n){
