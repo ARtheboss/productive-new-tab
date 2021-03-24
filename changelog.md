@@ -20,3 +20,5 @@
 	Notes tool added
 0.2.0.1:
 	Reading list adding restricted pages fix
+0.2.0.2:
+	Tab groups adding new tab from popup bug fix

@@ -111,9 +111,10 @@ class TabGroup extends Tool{
 	popupOnclicks(){
 		var self = this;
 		$("#add-to-tg-but").on('click', async function(){
-			await self.getCurrentTab();
-			self.data[$("#my-tgs").val()].list.push(self.tab);
-			await self.saveData();
+			chrome.tabs.query({ active: true, currentWindow: true }, async function(tabs){
+				self.data[$("#my-tgs").val()].list.push(tabs[0].url);
+				self.saveData();
+			});
 		});
 	}
 
