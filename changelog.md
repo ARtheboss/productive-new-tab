@@ -22,3 +22,6 @@
 	Reading list adding restricted pages fix
 0.2.0.2:
 	Tab groups adding new tab from popup bug fix
+0.2.1.0:
+	Added drag functionality on todo list items
+	Bug fixes with todo list popup and turning down opacity on inactivity
