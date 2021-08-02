@@ -10,6 +10,7 @@ var time_since_click = 0;
 
 var count_time = true;
 
+
 $(document).ready(async function () {
 
 	/*

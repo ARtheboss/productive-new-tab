@@ -25,3 +25,5 @@
 0.2.1.0:
 	Added drag functionality on todo list items
 	Bug fixes with todo list popup and turning down opacity on inactivity
+0.2.1.1:
+	Todo bug fix options menu not populating

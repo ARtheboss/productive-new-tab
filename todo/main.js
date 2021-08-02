@@ -215,8 +215,8 @@ class Todo extends Tool{
 		this.setHeadingDate(this.active_day);
 	}
 
-	populateOptionsTable(){
-		this.getData();
+	async populateOptionsTable(){
+		await this.getData();
 		$("#todo-table").html("<tr><th>Name</th><th>Type</th><th># Events</th><th>Delete</th></tr>");
 		for(var l = 0; l < this.data.length; l++){
 			var html = "<tr id='todo-"+l+"'>";
